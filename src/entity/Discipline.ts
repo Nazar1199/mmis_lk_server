@@ -10,9 +10,6 @@ export class Discipline {
     @Column({ nullable: false})
     name: string;
 
-    @Column({ nullable: false})
-    field: string;
-
     @OneToMany(() => Timetable, (timetable) => timetable.discipline)
     timetable: Timetable[]
 
