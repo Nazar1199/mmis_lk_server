@@ -17,12 +17,12 @@ export class Certification {
     @ManyToOne(() => Teacher, (teacher) => teacher.certification)
     teacher: Teacher;
 
-    @Column()
+    @Column({ nullable: false})
     dateTime: Date;
 
-    @Column()
+    @Column({ nullable: false})
     mark: number;
 
-    @Column()
+    @Column({ nullable: false})
     numberOfHours: number;
 }

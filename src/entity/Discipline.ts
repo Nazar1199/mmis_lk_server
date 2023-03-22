@@ -7,10 +7,10 @@ export class Discipline {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ nullable: false})
     name: string;
 
-    @Column()
+    @Column({ nullable: false})
     field: string;
 
     @OneToMany(() => Timetable, (timetable) => timetable.discipline)

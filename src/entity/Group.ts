@@ -9,7 +9,7 @@ export class Group {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ nullable: false})
     name: string;
 
     @ManyToOne(() => Faculty, (faculty) => faculty.group)

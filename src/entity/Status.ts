@@ -6,7 +6,7 @@ export class Status {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ nullable: false})
     name: string;
 
     @OneToMany(() => OrderingReferences, (orderingReferences) => orderingReferences.status)

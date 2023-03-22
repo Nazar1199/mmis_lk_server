@@ -14,7 +14,7 @@ export class OrderingReferences {
     @ManyToOne(() => Reference, (reference) => reference.orderingReferences)
     reference: Reference;
 
-    @Column()
+    @Column({ nullable: false})
     date: Date;
 
     @ManyToOne(() => Student, (student) => student.orderingReferences)

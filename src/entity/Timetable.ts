@@ -14,10 +14,10 @@ export class Timetable {
     @ManyToOne(() => Discipline, (discipline) => discipline.timetable)
     discipline: Discipline;
 
-    @Column()
+    @Column({ nullable: false})
     dateTime: Date;
 
-    @Column()
+    @Column({ nullable: false})
     auditorium: number;
 
     @ManyToOne(() => Group, (group) => group.timetable)

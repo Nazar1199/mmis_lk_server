@@ -6,7 +6,7 @@ export class Faculty {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ nullable: false})
     name: string;
 
     @OneToMany(() => Group, (group) => group.faculty)
