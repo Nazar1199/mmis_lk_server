@@ -1,0 +1,8 @@
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
+src/wwwroot/
+local_ormconfig.json
