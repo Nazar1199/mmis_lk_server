@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
 import { Teacher } from "./Teacher";
 import { Discipline } from "./Discipline";
 import { Group } from "./Group";
