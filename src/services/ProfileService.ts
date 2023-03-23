@@ -10,7 +10,7 @@ class ProfileService {
 
     getAllProfiles = async () => {
         let allProfiles = await getRepository(Profile).find(); 
-        console.log("Cmpt: " + JSON.stringify(allProfiles));
+        console.log("Profiles: " + JSON.stringify(allProfiles));
         return allProfiles;
     }
 
