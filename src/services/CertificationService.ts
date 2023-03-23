@@ -9,14 +9,19 @@ class CertificationService {
     }
 
     getAllCertifications = async () => {
-        let allCertifications = await getRepository(Certification).find(); 
+        let allCertifications = await getRepository(Certification).find({
+            relations: ['student', 'discipline', 'teacher']
+        }); 
         console.log("Certifications: " + JSON.stringify(allCertifications));
         return allCertifications;
     }
 
     getCertificationById = async(id: number) => {
         if(!id) return;
-        let certification = await getRepository(Certification).findOne(id);
+        let certification = await getRepository(Certification).find({
+            relations: ['student', 'discipline', 'teacher'],
+            where: {id: id}
+        });
         return certification;
     }
 
