@@ -25,6 +25,15 @@ class OrderingReferencesService {
         return orderingReference;
     }
 
+    getAllOrderingReferencesForStudent = async(idStudent: number) => {
+        if(!idStudent) return;
+        let orderingReference = await getRepository(OrderingReferences).find({
+            relations: ['references', 'status'],
+            where: {student: idStudent}
+        });
+        return orderingReference;
+    }
+
     saveOrderingReferences = async(orderingReference: OrderingReferences) => {
         if(!orderingReference) return;
         let saveOrderingReferences = await getRepository(OrderingReferences).save(orderingReference);
