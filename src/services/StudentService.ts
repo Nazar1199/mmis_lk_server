@@ -9,14 +9,19 @@ class StudentService {
     }
 
     getAllStudents = async () => {
-        let allStudents = await getRepository(Student).find(); 
+        let allStudents = await getRepository(Student).find({
+            relations: ['group']
+        }); 
         console.log("Students: " + JSON.stringify(allStudents));
         return allStudents;
     }
 
     getStudentById = async(id: number) => {
         if(!id) return;
-        let student = await getRepository(Student).findOne(id);
+        let student = await getRepository(Student).find({
+            relations: ['group'],
+            where: {id: id}
+        });
         return student;
     }
 
