@@ -25,6 +25,14 @@ class StudentService {
         return student;
     }
 
+    getAllStudentsForGroup = async(idGroup: number) => {
+        if(!idGroup) return;
+        let student = await getRepository(Student).find({
+            where: {group: idGroup}
+        });
+        return student;
+    }
+
     saveStudent = async(student: Student) => {
         if(!student) return;
         let saveStudent = await getRepository(Student).save(student);
