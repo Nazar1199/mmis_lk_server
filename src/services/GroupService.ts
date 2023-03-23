@@ -9,14 +9,19 @@ class GroupService {
     }
 
     getAllGroups = async () => {
-        let allGroups = await getRepository(Group).find(); 
+        let allGroups = await getRepository(Group).find({
+            relations: ['course, faculty']
+        }); 
         console.log("Groups: " + JSON.stringify(allGroups));
         return allGroups;
     }
 
     getGroupById = async(id: number) => {
         if(!id) return;
-        let group = await getRepository(Group).findOne(id);
+        let group = await getRepository(Group).find({
+            relations: ['course, faculty'],
+            where: {id: id}
+        });
         return group;
     }
 
