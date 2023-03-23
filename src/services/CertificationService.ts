@@ -25,6 +25,15 @@ class CertificationService {
         return certification;
     }
 
+    getAllCertificationsForStudent = async(idStudent: number) => {
+        if(!idStudent) return;
+        let certification = await getRepository(Certification).find({
+            relations: ['discipline', 'teacher'],
+            where: {student: idStudent}
+        });
+        return certification;
+    }
+
     saveCertification = async(certification: Certification) => {
         if(!certification) return;
         let saveCertification = await getRepository(Certification).save(certification);
