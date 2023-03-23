@@ -10,7 +10,7 @@ class OrderingReferencesService {
 
     getAllOrderingReferences = async () => {
         let allOrderingReferences = await getRepository(OrderingReferences).find({
-            relations: ['references', 'status']
+            relations: ['reference', 'status']
         }); 
         console.log("Ordering references: " + JSON.stringify(allOrderingReferences));
         return allOrderingReferences;
@@ -19,7 +19,7 @@ class OrderingReferencesService {
     getOrderingReferencesById = async(id: number) => {
         if(!id) return;
         let orderingReference = await getRepository(OrderingReferences).find({
-            relations: ['references', 'status'],
+            relations: ['reference', 'status'],
             where: {id: id}
         });
         return orderingReference;
@@ -28,7 +28,7 @@ class OrderingReferencesService {
     getAllOrderingReferencesForStudent = async(idStudent: number) => {
         if(!idStudent) return;
         let orderingReference = await getRepository(OrderingReferences).find({
-            relations: ['references', 'status'],
+            relations: ['reference', 'status'],
             where: {student: idStudent}
         });
         return orderingReference;
