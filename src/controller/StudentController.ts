@@ -36,11 +36,11 @@ export class StudentController {
     }
 
     static getAllStudentsForGroup = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.id) {
+        if (!request.params.group) {
             throw new Error("Не удалось получить информацию о студенте");
         }
         try {
-            console.log("Id student: " + request.params.id);
+            console.log("Id group: " + request.params.group);
             let result = await StudentService.getAllStudentsForGroup(request.params.group);
             response.status(200).send(result);
         } catch(error) {
