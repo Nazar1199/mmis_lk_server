@@ -37,14 +37,14 @@ export class OrderingReferencesController {
 
     static getAllOrderingReferencesForStudent = async(request: Request, response: Response, next: NextFunction) => {
         if (!request.params.student) {
-            throw new Error("Не удалось получить информацию о заказанной справке");
+            throw new Error("Не удалось получить информацию о заказанных справках");
         }
         try {
-            console.log("Id ordering reference: " + request.params.id);
+            console.log("Id student: " + request.params.student);
             let result = await OrderingReferenceService.getAllOrderingReferencesForStudent(request.params.student);
             response.status(200).send(result);
         } catch(error) {
-            response.status(500).send("Не удалось получить информацию о заказанной справке " + error);
+            response.status(500).send("Не удалось получить информацию о заказанных справках " + error);
         }
     }
 
