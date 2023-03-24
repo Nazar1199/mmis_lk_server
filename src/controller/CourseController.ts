@@ -52,7 +52,7 @@ export class CourseController {
             await CourseService.deleteCourse(request.params.id);
             response.status(200).send();
         } catch (error) {
-            response.status(500).send("Не удалось удалить курс");
+            response.status(500).send("Не удалось удалить курс" + error);
         }
     }
 }
