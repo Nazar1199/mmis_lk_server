@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, OneToMany, OneToOne } from "typeorm";
 import { Group } from "./Group";
 import { Profile } from "./Profile";
 import { OrderingReference } from "./OrderingReference";
@@ -36,8 +36,8 @@ export class Student {
     @OneToMany(() => OrderingReference, (orderingReference) => orderingReference.student)
     orderingReference: OrderingReference[]
 
-    @OneToMany(() => Profile, (profile) => profile.student)
-    profile: Profile[]
+    @OneToOne(() => Profile, (profile) => profile.student)
+    profile: Profile;
 
     @OneToMany(() => Certification, (certification) => certification.student)
     certification: Certification[]
