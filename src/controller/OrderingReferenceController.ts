@@ -1,9 +1,9 @@
 import {NextFunction, Request, Response} from "express";
 import OrderingReferenceService from "../services/OrderingReferenceService";
 
-export class OrderingReferencesController {
+export class OrderingReferenceController {
 
-    static createOrderingReferences = async(request: Request, response: Response, next: NextFunction) => {
+    static createOrderingReference = async(request: Request, response: Response, next: NextFunction) => {
         try {
             let result = await OrderingReferenceService.createOrderingReference(request.body);
             response.status(201).send(result);
