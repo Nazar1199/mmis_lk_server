@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { Group } from "./Group";
 import { Profile } from "./Profile";
-import { OrderingReferences } from "./OrderingReferences";
+import { OrderingReference } from "./OrderingReference";
 import { Certification } from "./Certification";
 
 @Entity()
@@ -33,8 +33,8 @@ export class Student {
     @Column({ nullable: false})
     email: string;
 
-    @OneToMany(() => OrderingReferences, (orderingReferences) => orderingReferences.student)
-    orderingReferences: OrderingReferences[]
+    @OneToMany(() => OrderingReference, (orderingReference) => orderingReference.student)
+    orderingReference: OrderingReference[]
 
     @OneToMany(() => Profile, (profile) => profile.student)
     profile: Profile[]

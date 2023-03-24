@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
-import { OrderingReferences } from "./OrderingReferences";
+import { OrderingReference } from "./OrderingReference";
 
 @Entity()
 export class Status {
@@ -9,6 +9,6 @@ export class Status {
     @Column({ nullable: false})
     name: string;
 
-    @OneToMany(() => OrderingReferences, (orderingReferences) => orderingReferences.status)
-    orderingReferences: OrderingReferences[]
+    @OneToMany(() => OrderingReference, (orderingReference) => orderingReference.status)
+    orderingReference: OrderingReference[]
 }
