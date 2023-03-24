@@ -31,8 +31,8 @@ export class DisciplineController {
 
     static saveDiscipline = async(request: Request, response: Response, next: NextFunction) => {
         try {
-            let profile = await DisciplineService.saveDiscipline(request.body);
-            response.status(200).send(profile);
+            let discipline = await DisciplineService.saveDiscipline(request.body);
+            response.status(200).send(discipline);
         } catch(error) {
             response.status(500).send("Не удалось сохранить информацию о дисциплине: " + error);
         }         

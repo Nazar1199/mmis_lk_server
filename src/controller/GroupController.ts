@@ -31,8 +31,8 @@ export class GroupController {
 
     static saveGroup = async(request: Request, response: Response, next: NextFunction) => {
         try {
-            let profile = await GroupService.saveGroup(request.body);
-            response.status(200).send(profile);
+            let group = await GroupService.saveGroup(request.body);
+            response.status(200).send(group);
         } catch(error) {
             response.status(500).send("Не удалось сохранить информацию о группе: " + error);
         }         

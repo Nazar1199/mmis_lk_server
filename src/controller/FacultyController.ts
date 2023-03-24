@@ -31,8 +31,8 @@ export class FacultyController {
 
     static saveFaculty = async(request: Request, response: Response, next: NextFunction) => {
         try {
-            let profile = await FacultyService.saveFaculty(request.body);
-            response.status(200).send(profile);
+            let faculty = await FacultyService.saveFaculty(request.body);
+            response.status(200).send(faculty);
         } catch(error) {
             response.status(500).send("Не удалось сохранить информацию о факультете: " + error);
         }         
