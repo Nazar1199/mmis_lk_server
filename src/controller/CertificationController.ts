@@ -11,7 +11,7 @@ export class CertificationController {
         }                
     }
 
-    static getAllCertification = async (request: Request, response: Response, next: NextFunction) => {
+    static getAllCertifications = async (request: Request, response: Response, next: NextFunction) => {
         try {
             let allCertification = await CertificationService.getAllCertifications();
             response.status(200).send(allCertification);
