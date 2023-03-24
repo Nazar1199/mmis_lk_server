@@ -34,6 +34,15 @@ class CertificationService {
         return certification;
     }
 
+    getAllCertificationsForGroup = async(idGroup: number) => {
+        if(!idGroup) return;
+        let certification = await getRepository(Certification).find({
+            relations: ['student', 'discipline', 'teacher'],
+            where: {student: {group: idGroup}}
+        });
+        return certification;
+    }
+
     saveCertification = async(certification: Certification) => {
         if(!certification) return;
         let saveCertification = await getRepository(Certification).save(certification);
