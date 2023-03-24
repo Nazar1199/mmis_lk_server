@@ -18,7 +18,7 @@ export class CertificationController {
             console.log("getAllCertification: " + JSON.stringify(allCertification));
         } catch(error) {
             console.log("Error: " + error);
-            response.status(500).send("Не удалось получить список оценок " + error);
+            response.status(500).send("Не удалось получить список оценок: " + error);
         }         
     }
 
@@ -30,7 +30,7 @@ export class CertificationController {
             let certification = await CertificationService.getCertificationById(request.params.id);
             response.status(200).send(certification);
         } catch(error) {
-            response.status(500).send("Не удалось получить компетенцию " + error);
+            response.status(500).send("Не удалось получить оценку: " + error);
         }
     }
 
@@ -39,7 +39,7 @@ export class CertificationController {
             let certification = await CertificationService.saveCertification(request.body);
             response.status(200).send(certification);
         } catch(error) {
-            response.status(500).send("Не удалось сохранить информацию о оценке " + error);
+            response.status(500).send("Не удалось сохранить информацию о оценке: " + error);
         }         
     }
 
@@ -48,7 +48,7 @@ export class CertificationController {
             await CertificationService.deleteCertification(request.params.id);
             response.status(204).send();
         } catch (error) {
-            response.status(500).send("Не удалось удалить оценку " + error);
+            response.status(500).send("Не удалось удалить оценку: " + error);
         }         
     }
 }
