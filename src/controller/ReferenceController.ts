@@ -31,8 +31,8 @@ export class ReferenceController {
 
     static saveReference = async(request: Request, response: Response, next: NextFunction) => {
         try {
-            let profile = await ReferenceService.saveReference(request.body);
-            response.status(200).send(profile);
+            let reference = await ReferenceService.saveReference(request.body);
+            response.status(200).send(reference);
         } catch(error) {
             response.status(500).send("Не удалось сохранить информацию о справке: " + error);
         }         
