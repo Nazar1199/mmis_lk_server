@@ -4,8 +4,8 @@ import CertificationService from "../services/CertificationService";
 export class CertificationController {
     static createCertification = async(request: Request, response: Response, next: NextFunction) => {
         try {
-            let cmpt = await CertificationService.createCertification(request.body);
-            response.status(200).send(cmpt);
+            let certification = await CertificationService.createCertification(request.body);
+            response.status(200).send(certification);
         } catch(error) {
             response.status(500).send("Ошибка при сохрании новой оценки: " + error);
         }                
@@ -27,8 +27,8 @@ export class CertificationController {
             throw new Error("Не удалось получить информацию о оценке");
         }
         try {
-            let cmpt = await CertificationService.getCertificationById(request.params.id);
-            response.status(200).send(cmpt);
+            let certification = await CertificationService.getCertificationById(request.params.id);
+            response.status(200).send(certification);
         } catch(error) {
             response.status(500).send("Не удалось получить компетенцию " + error);
         }
@@ -36,8 +36,8 @@ export class CertificationController {
 
     static saveCertification = async(request: Request, response: Response, next: NextFunction) => {
         try {
-            let cmpt = await CertificationService.saveCertification(request.body);
-            response.status(200).send(cmpt);
+            let certification = await CertificationService.saveCertification(request.body);
+            response.status(200).send(certification);
         } catch(error) {
             response.status(500).send("Не удалось сохранить информацию о оценке " + error);
         }         
