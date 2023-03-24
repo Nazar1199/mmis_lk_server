@@ -14,7 +14,7 @@ export class CourseController {
 
     static getAllCourses = async (request: Request, response: Response, next: NextFunction) => {
         try {
-            let result = await CourseService.getAllCoursesList();
+            let result = await CourseService.getAllCourses();
             response.status(200).send(result);
         } catch(error) {
             console.log("Error: " + error);
