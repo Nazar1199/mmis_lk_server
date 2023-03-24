@@ -34,6 +34,30 @@ export class CertificationController {
         }
     }
 
+    static getAllCertificationsForStudent = async(request: Request, response: Response, next: NextFunction) => {
+        if (!request.params.student) {
+            throw new Error("Не удалось получить информацию о оценках студента");
+        }
+        try {
+            let certifications = await CertificationService.getAllCertificationsForStudent(request.params.student);
+            response.status(200).send(certifications);
+        } catch(error) {
+            response.status(500).send("Не удалось получить информацию о оценках студента: " + error);
+        }
+    }
+
+    static getAllCertificationsForGroup = async(request: Request, response: Response, next: NextFunction) => {
+        if (!request.params.group) {
+            throw new Error("Не удалось получить информацию о оценках группы");
+        }
+        try {
+            let certifications = await CertificationService.getAllCertificationsForGroup(request.params.group);
+            response.status(200).send(certifications);
+        } catch(error) {
+            response.status(500).send("Не удалось получить информацию о оценках группы: " + error);
+        }
+    }
+
     static saveCertification = async(request: Request, response: Response, next: NextFunction) => {
         try {
             let certification = await CertificationService.saveCertification(request.body);
