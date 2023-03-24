@@ -12,6 +12,9 @@ export class Group {
     @Column({ nullable: false})
     name: string;
 
+    @Column({ nullable: false})
+    year: number;
+
     @ManyToOne(() => Faculty, (faculty) => faculty.group)
     faculty: Faculty;
 
