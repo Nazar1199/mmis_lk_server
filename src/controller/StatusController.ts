@@ -31,8 +31,8 @@ export class StatusController {
 
     static saveStatus = async(request: Request, response: Response, next: NextFunction) => {
         try {
-            let profile = await StatusService.saveStatus(request.body);
-            response.status(200).send(profile);
+            let status = await StatusService.saveStatus(request.body);
+            response.status(200).send(status);
         } catch(error) {
             response.status(500).send("Не удалось сохранить информацию о статусе: " + error);
         }         
