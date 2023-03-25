@@ -36,9 +36,6 @@ export class Student {
     @OneToMany(() => OrderingReference, (orderingReference) => orderingReference.student)
     orderingReference: OrderingReference[]
 
-    @OneToOne(() => Profile, (profile) => profile.student)
-    profile: Profile;
-
     @OneToMany(() => Certification, (certification) => certification.student)
     certification: Certification[]
 }
