@@ -8,6 +8,7 @@ async function checkJwtAdmin (request: Request, response: Response, next: NextFu
         const token = request.headers.authorization;
         const decodeToken = jwt.verify(token, process.env.SECRET_KEY);
         let profile = await ProfileService.getProfileById(decodeToken.id);
+        request.headers.id = decodeToken.id;
         if (profile.profileRole.id !== 2){throw new Error}
         next();
     } catch (error) {
