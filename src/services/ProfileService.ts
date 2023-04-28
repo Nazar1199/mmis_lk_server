@@ -25,11 +25,9 @@ class ProfileService {
             },
             relations: ['student']
         });
-        const validPass = bcrypt.compareSync(password, result.password)
-        console.log("validPass", validPass)
+        const validPass = bcrypt.compareSync(password, result.password);
         if(!result || !validPass) throw new Error("");
-        console.log("Найден профиль: ", result);
-        return this.getToken(result.id);
+        return { token: this.getToken(result.id)};
     }
 
     getAllProfiles = async () => {
