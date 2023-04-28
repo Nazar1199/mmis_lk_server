@@ -63,7 +63,7 @@ class ProfileService {
     getToken(id: number) {
         return jwt.sign({id},
             process.env.SECRET_KEY,
-            {expiresIn: '96h'})
+            {expiresIn: process.env.LIFE_TIME_KEY})
     }
 }
 
