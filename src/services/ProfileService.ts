@@ -2,6 +2,7 @@ import { getRepository } from "typeorm";
 import { Profile } from "../entity/Profile";
 
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 class ProfileService {
     createProfile = async (profile: Profile) => {
@@ -28,7 +29,7 @@ class ProfileService {
         console.log("validPass", validPass)
         if(!result || !validPass) throw new Error("");
         console.log("Найден профиль: ", result);
-        return result;
+        return this.getToken(result.id);
     }
 
     getAllProfiles = async () => {
@@ -57,6 +58,12 @@ class ProfileService {
     deleteProfile = async(id: number) => {
         if(!id) throw new Error("");
         return await getRepository(Profile).delete(id);
+    }
+
+    getToken(id: number) {
+        return jwt.sign({id},
+            process.env.SECRET_KEY,
+            {expiresIn: '96h'})
     }
 }
 
