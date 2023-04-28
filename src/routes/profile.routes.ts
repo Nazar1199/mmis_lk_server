@@ -5,6 +5,7 @@ import checkJwtAdmin from "../middleware/jwtAdmin";
 
 const ProfileRoutes = Router();
 
+ProfileRoutes.get("/me", checkJwtAuth, ProfileController.getMyProfile);
 ProfileRoutes.get("/:id", checkJwtAdmin, ProfileController.getProfileById);
 ProfileRoutes.post("/login", ProfileController.login);
 ProfileRoutes.post("/registration", checkJwtAdmin, ProfileController.registration)

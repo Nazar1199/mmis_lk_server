@@ -38,6 +38,11 @@ class ProfileService {
         return allProfiles;
     }
 
+    getMyProfile = async (id: number) => {
+        let myProfile = await getRepository(Profile).findOne(id); 
+        return myProfile;
+    }
+
     getProfileById = async(id: number) => {
         console.log("Найти профиль с id: ", id);
         if(!id) throw new Error("");

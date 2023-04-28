@@ -29,6 +29,15 @@ export class ProfileController {
         }                
     }
 
+    static getMyProfile = async(request: Request, response: Response, next: NextFunction) => {
+        try {
+            let result = await ProfileService.getMyProfile(request.headers.id);
+            response.status(200).send(result);
+        } catch(error) {
+            response.status(500).send("Не удалось получить профиль: " + error);
+        }
+    }
+
     static getProfileById = async(request: Request, response: Response, next: NextFunction) => {
         try {
             let result = await ProfileService.getProfileById(request.params.id);
