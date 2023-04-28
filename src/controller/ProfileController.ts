@@ -10,6 +10,14 @@ export class ProfileController {
             response.status(500).send("Ошибка при сохрании нового профиля: " + error);
         }                
     }
+    static login = async(request: Request, response: Response, next: NextFunction) => {
+        try {
+            let result = await ProfileService.login(request.body.email, request.body.password);
+            response.status(200).send(result);
+        } catch(error) {
+            response.status(500).send("Неверный логин или пароль: " + error);
+        }                
+    }
 
     static getProfileById = async(request: Request, response: Response, next: NextFunction) => {
         try {
