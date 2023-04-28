@@ -13,7 +13,8 @@ class ProfileService {
             where: {
                 email: email,
                 password: password
-            }
+            },
+            relations: ['student']
         });
         console.log("Найден профиль: ", result);
         if(!result) throw new Error("");
