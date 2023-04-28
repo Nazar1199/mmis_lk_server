@@ -18,7 +18,7 @@ class StudentService {
 
     getStudentById = async(id: number) => {
         if(!id) return;
-        let student = await getRepository(Student).find({
+        let student = await getRepository(Student).findOne({
             relations: ['group'],
             where: {id: id}
         });
