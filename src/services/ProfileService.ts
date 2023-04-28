@@ -42,7 +42,8 @@ class ProfileService {
         console.log("Найти профиль с id: ", id);
         if(!id) throw new Error("");
         let profile = await getRepository(Profile).findOne({
-            where: {id: id}
+            where: {id: id},
+            relations: ['profileRole']
         });
         if(!profile) throw new Error("");
         console.log("Найден профиль: ", profile);
