@@ -1,8 +1,17 @@
 import { getRepository } from "typeorm";
 import { Profile } from "../entity/Profile";
 
+const bcrypt = require('bcrypt');
+
 class ProfileService {
     createProfile = async (profile: Profile) => {
+        let createProfile = getRepository(Profile).create(profile);
+        let result = await getRepository(Profile).save(createProfile);
+        return result;
+    }
+
+    registration = async (profile: Profile) => {
+        profile.password = bcrypt.hashSync(profile.password, 10)
         let createProfile = getRepository(Profile).create(profile);
         let result = await getRepository(Profile).save(createProfile);
         return result;
@@ -11,13 +20,14 @@ class ProfileService {
     login = async (email: String, password: String) => {
         let result = await getRepository(Profile).findOne({
             where: {
-                email: email,
-                password: password
+                email: email
             },
             relations: ['student']
         });
+        const validPass = bcrypt.compareSync(password, result.password)
+        console.log("validPass", validPass)
+        if(!result || !validPass) throw new Error("");
         console.log("Найден профиль: ", result);
-        if(!result) throw new Error("");
         return result;
     }
 
