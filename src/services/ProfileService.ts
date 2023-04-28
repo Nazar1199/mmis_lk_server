@@ -1,5 +1,6 @@
 import { getRepository } from "typeorm";
 import { Profile } from "../entity/Profile";
+import { ProfileRole } from "../entity/ProfileRole";
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -12,7 +13,8 @@ class ProfileService {
     }
 
     registration = async (profile: Profile) => {
-        profile.password = bcrypt.hashSync(profile.password, 10)
+        profile.password = bcrypt.hashSync(profile.password, 10);
+        profile.profileRole = await getRepository(ProfileRole).findOne(1);
         let createProfile = getRepository(Profile).create(profile);
         let result = await getRepository(Profile).save(createProfile);
         return result;
