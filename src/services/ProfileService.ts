@@ -43,6 +43,14 @@ class ProfileService {
         return myProfile;
     }
 
+    getMyStudent = async (id: number) => {
+        let myProfile = await getRepository(Profile).findOne({
+            where: {id: id},
+            relations: ['student']
+        }); 
+        return myProfile.student;
+    }
+
     getProfileById = async(id: number) => {
         console.log("Найти профиль с id: ", id);
         if(!id) throw new Error("");

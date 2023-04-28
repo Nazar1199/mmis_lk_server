@@ -1,5 +1,6 @@
 import {NextFunction, Request, Response} from "express";
 import StudentService from "../services/StudentService";
+import ProfileService from "../services/ProfileService";
 
 export class StudentController {
 
@@ -22,12 +23,20 @@ export class StudentController {
         }
     }
 
+    static getStudentMe = async(request: Request, response: Response, next: NextFunction) => {
+        try {
+            let result = await ProfileService.getMyStudent(request.headers.id);
+            response.status(200).send(result);
+        } catch(error) {
+            response.status(500).send("Не удалось получить информацию о студенте " + error);
+        }
+    }
+
     static getStudentById = async(request: Request, response: Response, next: NextFunction) => {
         if (!request.params.id) {
             throw new Error("Не удалось получить информацию о студенте");
         }
         try {
-            console.log("Id student: " + request.params.id);
             let result = await StudentService.getStudentById(request.params.id);
             response.status(200).send(result);
         } catch(error) {
