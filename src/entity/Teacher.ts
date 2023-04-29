@@ -16,6 +16,9 @@ export class Teacher {
     @Column({ nullable: false})
     patronymic: string;
 
+    @Column({ nullable: true})
+    photo: string;
+
     @Column({ nullable: false})
     email: string;
 

@@ -30,6 +30,9 @@ export class Student {
     @Column({ nullable: false})
     birthdate: Date;
 
+    @Column({ nullable: true})
+    photo: string;
+
     @Column({ nullable: false})
     email: string;
 
