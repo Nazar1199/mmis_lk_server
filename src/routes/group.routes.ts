@@ -1,12 +1,14 @@
 import { Router } from "express";
 import { GroupController } from "../controller/GroupController";
+import checkJwtAdmin from "../middleware/jwtAdmin";
+import checkJwtAuth from "../middleware/jwt";
 
 const GroupRoutes = Router();
 
-GroupRoutes.get("/", GroupController.getAllGroupes);
-GroupRoutes.get("/:id", GroupController.getGroupById);
-GroupRoutes.post("/", GroupController.createGroup);
-GroupRoutes.put("/:id", GroupController.saveGroup);
-GroupRoutes.delete("/:id", GroupController.deleteGroup);
+GroupRoutes.get("/", checkJwtAuth, GroupController.getAllGroupes);
+GroupRoutes.get("/:id", checkJwtAuth, GroupController.getGroupById);
+GroupRoutes.post("/", checkJwtAdmin, GroupController.createGroup);
+GroupRoutes.put("/:id", checkJwtAdmin, GroupController.saveGroup);
+GroupRoutes.delete("/:id", checkJwtAdmin, GroupController.deleteGroup);
 
 export default GroupRoutes;

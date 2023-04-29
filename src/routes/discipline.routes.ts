@@ -1,12 +1,14 @@
 import { Router } from "express";
 import { DisciplineController } from "../controller/DisciplineController";
+import checkJwtAdmin from "../middleware/jwtAdmin";
+import checkJwtAuth from "../middleware/jwt";
 
 const DisciplineRoutes = Router();
 
-DisciplineRoutes.get("/", DisciplineController.getAllDisciplines);
-DisciplineRoutes.get("/:id", DisciplineController.getDisciplineById);
-DisciplineRoutes.post("/", DisciplineController.createDiscipline);
-DisciplineRoutes.put("/:id", DisciplineController.saveDiscipline);
-DisciplineRoutes.delete("/:id", DisciplineController.deleteDiscipline);
+DisciplineRoutes.get("/", checkJwtAuth, DisciplineController.getAllDisciplines);
+DisciplineRoutes.get("/:id", checkJwtAuth, DisciplineController.getDisciplineById);
+DisciplineRoutes.post("/", checkJwtAdmin, DisciplineController.createDiscipline);
+DisciplineRoutes.put("/:id", checkJwtAdmin, DisciplineController.saveDiscipline);
+DisciplineRoutes.delete("/:id", checkJwtAdmin, DisciplineController.deleteDiscipline);
 
 export default DisciplineRoutes;

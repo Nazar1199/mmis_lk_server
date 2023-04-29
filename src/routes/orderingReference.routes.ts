@@ -1,13 +1,15 @@
 import { Router } from "express";
 import { OrderingReferenceController } from "../controller/OrderingReferenceController";
+import checkJwtAdmin from "../middleware/jwtAdmin";
+import checkJwtAuth from "../middleware/jwt";
 
 const OrderingReferenceRoutes = Router();
 
-OrderingReferenceRoutes.get("/", OrderingReferenceController.getAllOrderingReferences);
-OrderingReferenceRoutes.get("/:id", OrderingReferenceController.getOrderingReferenceById);
-OrderingReferenceRoutes.get("/student/:id", OrderingReferenceController.getAllOrderingReferencesForStudent);
-OrderingReferenceRoutes.post("/", OrderingReferenceController.createOrderingReference);
-OrderingReferenceRoutes.put("/:id", OrderingReferenceController.saveOrderingReference);
-OrderingReferenceRoutes.delete("/:id", OrderingReferenceController.deleteOrderingReference);
+OrderingReferenceRoutes.get("/", checkJwtAdmin, OrderingReferenceController.getAllOrderingReferences);
+OrderingReferenceRoutes.get("/:id", checkJwtAdmin, OrderingReferenceController.getOrderingReferenceById);
+OrderingReferenceRoutes.get("/student/:id", checkJwtAdmin, OrderingReferenceController.getAllOrderingReferencesForStudent);
+OrderingReferenceRoutes.post("/", checkJwtAdmin, OrderingReferenceController.createOrderingReference);
+OrderingReferenceRoutes.put("/:id", checkJwtAdmin, OrderingReferenceController.saveOrderingReference);
+OrderingReferenceRoutes.delete("/:id", checkJwtAdmin, OrderingReferenceController.deleteOrderingReference);
 
 export default OrderingReferenceRoutes;
