@@ -23,10 +23,10 @@ export class OrderingReferenceController {
     }
 
     static getOrderingReferenceById = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.id) {
-            throw new Error("Не удалось получить информацию о заказанной справке");
-        }
         try {
+            if (!request.params.id) {
+                throw new Error("Не удалось получить информацию о заказанной справке");
+            }
             console.log("Id ordering reference: " + request.params.id);
             let result = await OrderingReferenceService.getOrderingReferenceById(request.params.id);
             response.status(200).send(result);
@@ -36,10 +36,10 @@ export class OrderingReferenceController {
     }
 
     static getAllOrderingReferencesForStudent = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.student) {
-            throw new Error("Не удалось получить информацию о заказанных справках");
-        }
         try {
+            if (!request.params.student) {
+                throw new Error("Не удалось получить информацию о заказанных справках");
+            }
             console.log("Id student: " + request.params.student);
             let result = await OrderingReferenceService.getAllOrderingReferencesForStudent(request.params.student);
             response.status(200).send(result);
@@ -58,10 +58,10 @@ export class OrderingReferenceController {
     }
 
     static deleteOrderingReference = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.id) {
-            throw new Error("Не удалось найти заказанную справку, которую требуется удалить");
-        }
         try {
+            if (!request.params.id) {
+                throw new Error("Не удалось найти заказанную справку, которую требуется удалить");
+            }
             await OrderingReferenceService.deleteOrderingReference(request.params.id);
             response.status(200).send();
         } catch (error) {
