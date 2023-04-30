@@ -50,6 +50,13 @@ class ProfileService {
         }); 
         return myProfile.student;
     }
+    getMyStudentId = async (id: number) => {
+        let myProfile = await getRepository(Profile).findOne({
+            where: {id: id},
+            relations: ['student']
+        }); 
+        return myProfile.student.id;
+    }
 
     getProfileById = async(id: number) => {
         console.log("Найти профиль с id: ", id);
