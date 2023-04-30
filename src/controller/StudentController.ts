@@ -25,7 +25,8 @@ export class StudentController {
 
     static getStudentMe = async(request: Request, response: Response, next: NextFunction) => {
         try {
-            let result = await ProfileService.getMyStudent(request.headers.id);
+            let studentId = await ProfileService.getMyStudentId(request.headers.id);
+            let result = await StudentService.getStudentById(studentId);
             response.status(200).send(result);
         } catch(error) {
             response.status(500).send("Не удалось получить информацию о студенте " + error);
