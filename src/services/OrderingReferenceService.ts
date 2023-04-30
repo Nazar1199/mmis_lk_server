@@ -18,7 +18,7 @@ class OrderingReferenceService {
 
     getOrderingReferenceById = async(id: number) => {
         if(!id) return;
-        let orderingReference = await getRepository(OrderingReference).find({
+        let orderingReference = await getRepository(OrderingReference).findOne({
             relations: ['reference', 'status'],
             where: {id: id}
         });
