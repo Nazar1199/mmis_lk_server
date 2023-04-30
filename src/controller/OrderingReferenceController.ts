@@ -35,13 +35,26 @@ export class OrderingReferenceController {
         }
     }
 
-    static getAllOrderingReferencesForStudent = async(request: Request, response: Response, next: NextFunction) => {
+    static getAllOrderingReferencesForMe = async(request: Request, response: Response, next: NextFunction) => {
         try {
-            if (!request.params.student) {
+            if (!request.headers.id) {
                 throw new Error("Не удалось получить информацию о заказанных справках");
             }
-            console.log("Id student: " + request.params.student);
-            let result = await OrderingReferenceService.getAllOrderingReferencesForStudent(request.params.student);
+            console.log("Id student: " + request.headers.id);
+            let result = await OrderingReferenceService.getAllOrderingReferencesForStudent(request.headers.id);
+            response.status(200).send(result);
+        } catch(error) {
+            response.status(500).send("Не удалось получить информацию о заказанных справках " + error);
+        }
+    }
+
+    static getAllOrderingReferencesForStudent = async(request: Request, response: Response, next: NextFunction) => {
+        try {
+            if (!request.params.id) {
+                throw new Error("Не удалось получить информацию о заказанных справках");
+            }
+            console.log("Id student: " + request.params.id);
+            let result = await OrderingReferenceService.getAllOrderingReferencesForStudent(request.params.id);
             response.status(200).send(result);
         } catch(error) {
             response.status(500).send("Не удалось получить информацию о заказанных справках " + error);
