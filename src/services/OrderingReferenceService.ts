@@ -3,14 +3,16 @@ import { OrderingReference } from "../entity/OrderingReference";
 
 class OrderingReferenceService {
     createOrderingReference = async (orderingReference: OrderingReference) => {
+        console.log("Create ordering reference:", orderingReference);
         let createOrderingReferences = getRepository(OrderingReference).create(orderingReference);
         let result = await getRepository(OrderingReference).save(createOrderingReferences);
+        console.log("Creating result", result);
         return result;
     }
 
     getAllOrderingReferences = async () => {
         let allOrderingReferences = await getRepository(OrderingReference).find({
-            relations: ['reference', 'status']
+            relations: ['reference', 'status', 'student']
         }); 
         console.log("Ordering references: " + JSON.stringify(allOrderingReferences));
         return allOrderingReferences;
@@ -19,7 +21,7 @@ class OrderingReferenceService {
     getOrderingReferenceById = async(id: number) => {
         if(!id) return;
         let orderingReference = await getRepository(OrderingReference).findOne({
-            relations: ['reference', 'status'],
+            relations: ['reference', 'status', 'student'],
             where: {id: id}
         });
         return orderingReference;

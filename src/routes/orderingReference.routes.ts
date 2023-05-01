@@ -6,6 +6,7 @@ import checkJwtAuth from "../middleware/jwt";
 const OrderingReferenceRoutes = Router();
 
 OrderingReferenceRoutes.get("/me", checkJwtAuth, OrderingReferenceController.getAllOrderingReferencesForMe);
+OrderingReferenceRoutes.post("/me", checkJwtAuth, OrderingReferenceController.createOrderingReferenceForMe);
 OrderingReferenceRoutes.get("/", checkJwtAdmin, OrderingReferenceController.getAllOrderingReferences);
 OrderingReferenceRoutes.get("/:id", checkJwtAdmin, OrderingReferenceController.getOrderingReferenceById);
 OrderingReferenceRoutes.get("/student/:id", checkJwtAdmin, OrderingReferenceController.getAllOrderingReferencesForStudent);

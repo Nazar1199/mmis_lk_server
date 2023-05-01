@@ -1,10 +1,30 @@
 import {NextFunction, Request, Response} from "express";
 import OrderingReferenceService from "../services/OrderingReferenceService";
+import StatusService from "../services/StatusService";
+import { ProfileController } from "./ProfileController";
+import ProfileService from "../services/ProfileService";
 
 export class OrderingReferenceController {
 
     static createOrderingReference = async(request: Request, response: Response, next: NextFunction) => {
         try {
+            let result = await OrderingReferenceService.createOrderingReference(request.body);
+            response.status(201).send(result);
+        } catch(error) {
+            response.status(500).send("Ошибка при добавлении заказанной справки: " + error);
+        }
+    }
+
+    static createOrderingReferenceForMe = async(request: Request, response: Response, next: NextFunction) => {
+        try {
+            if (!request.headers.id) {
+                throw new Error("Ошибка при добавлении заказанной справки, студент не определен");
+            }
+            let newReference = {reference: null, status: null, student: null};
+            newReference.reference = request.body;
+            newReference.status = await StatusService.getStatusById(3);
+            newReference.student = await ProfileService.getMyStudent(request.headers.id);
+            request.body = newReference;
             let result = await OrderingReferenceService.createOrderingReference(request.body);
             response.status(201).send(result);
         } catch(error) {
