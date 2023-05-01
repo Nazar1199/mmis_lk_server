@@ -60,6 +60,7 @@ export class OrderingReferenceController {
             if (!request.headers.id) {
                 throw new Error("Не удалось получить информацию о заказанных справках");
             }
+            request.headers.id = await ProfileService.getMyStudentId(request.headers.id)
             console.log("Id student: " + request.headers.id);
             let result = await OrderingReferenceService.getAllOrderingReferencesForStudent(request.headers.id);
             response.status(200).send(result);
