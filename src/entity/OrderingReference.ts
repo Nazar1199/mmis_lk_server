@@ -14,7 +14,7 @@ export class OrderingReference {
     @ManyToOne(() => Reference, (reference) => reference.orderingReference)
     reference: Reference;
 
-    @Column({ nullable: false})
+    @Column('timestamp with time zone', { nullable: false, default: () => 'CURRENT_TIMESTAMP' })  
     date: Date;
 
     @ManyToOne(() => Student, (student) => student.orderingReference)
