@@ -1,6 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Certification } from "./Certification";
 import { Timetable } from "./Timetable";
+import { Position } from "./Position";
 
 @Entity()
 export class Teacher {
@@ -25,8 +26,8 @@ export class Teacher {
     @Column({ nullable: false})
     phone: string;
 
-    @Column({ nullable: false})
-    position: string;
+    @ManyToOne(() => Position, (position) => position.teacher)
+    position: Teacher;
 
     @OneToMany(() => Timetable, (timetable) => timetable.teacher)
     timetable: Timetable[]
