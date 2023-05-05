@@ -2,6 +2,7 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
 import { Teacher } from "./Teacher";
 import { Discipline } from "./Discipline";
 import { Group } from "./Group";
+import { Auditorium } from "./Auditorium";
 
 @Entity()
 export class Timetable {
@@ -17,8 +18,8 @@ export class Timetable {
     @Column({ nullable: false})
     dateTime: Date;
 
-    @Column({ nullable: false})
-    auditorium: number;
+    @ManyToOne(() => Auditorium, (auditorium) => auditorium.timetable)
+    auditorium: Auditorium;
 
     @ManyToOne(() => Group, (group) => group.timetable)
     group: Group;
