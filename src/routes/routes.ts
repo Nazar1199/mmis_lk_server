@@ -11,6 +11,7 @@ import StatusRoutes from "./status.routes";
 import StudentRoutes from "./student.routes";
 import TeacherRoutes from "./teacher.routes";
 import TimetableRoutes from "./timetable.routes";
+import AuditoriumRoutes from "./auditorium.routes";
 
 const routes = Router();
 
@@ -26,5 +27,6 @@ routes.use("/status", StatusRoutes);
 routes.use("/student", StudentRoutes);
 routes.use("/teacher", TeacherRoutes);
 routes.use("/timetable", TimetableRoutes);
+routes.use("/auditorium", AuditoriumRoutes)
 
 export default routes;
