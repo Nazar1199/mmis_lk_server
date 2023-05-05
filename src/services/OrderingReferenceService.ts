@@ -31,7 +31,10 @@ class OrderingReferenceService {
         if(!idStudent) return;
         let orderingReference = await getRepository(OrderingReference).find({
             relations: ['reference', 'status'],
-            where: {student: idStudent}
+            where: {student: idStudent},
+            order: {
+                date: 'DESC'
+            }
         });
         return orderingReference;
     }
