@@ -9,14 +9,19 @@ class TeacherService {
     }
 
     getAllTeachers = async () => {
-        let allTeachers = await getRepository(Teacher).find(); 
+        let allTeachers = await getRepository(Teacher).find({
+            relations: ['position']
+        }); 
         console.log("Teachers: " + JSON.stringify(allTeachers));
         return allTeachers;
     }
 
     getTeacherById = async(id: number) => {
         if(!id) return;
-        let teacher = await getRepository(Teacher).findOne(id);
+        let teacher = await getRepository(Teacher).findOne({
+            where: {id: id},
+            relations: ['position']
+        });
         return teacher;
     }
 
