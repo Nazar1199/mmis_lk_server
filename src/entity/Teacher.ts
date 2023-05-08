@@ -2,6 +2,7 @@ import { Column, Entity, OneToMany, ManyToOne, PrimaryGeneratedColumn } from "ty
 import { Certification } from "./Certification";
 import { Timetable } from "./Timetable";
 import { Position } from "./Position";
+import { Department } from "./Department";
 
 @Entity()
 export class Teacher {
@@ -28,6 +29,9 @@ export class Teacher {
 
     @ManyToOne(() => Position, (position) => position.teacher)
     position: Teacher;
+
+    @ManyToOne(() => Department, (department) => department.teacher)
+    department: Teacher;
 
     @OneToMany(() => Timetable, (timetable) => timetable.teacher)
     timetable: Timetable[]
