@@ -9,6 +9,9 @@ export class Course {
     @Column({ nullable: false})
     name: string;
 
+    @Column({ nullable: false})
+    number: number;
+
     @OneToMany(() => Group, (group) => group.course)
     group: Group[]
 }
