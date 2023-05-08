@@ -20,7 +20,7 @@ class TeacherService {
         if(!id) return;
         let teacher = await getRepository(Teacher).findOne({
             where: {id: id},
-            relations: ['position']
+            relations: ['position', 'department']
         });
         return teacher;
     }
