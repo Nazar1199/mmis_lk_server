@@ -14,6 +14,7 @@ import TimetableRoutes from "./timetable.routes";
 import AuditoriumRoutes from "./auditorium.routes";
 import PositionRoutes from "./position.routes";
 import DepartmentRoutes from "./department.routes";
+import LessonTypeRoutes from "./LessonType.routes";
 
 const routes = Router();
 
@@ -32,5 +33,6 @@ routes.use("/timetable", TimetableRoutes);
 routes.use("/auditorium", AuditoriumRoutes);
 routes.use("/position", PositionRoutes);
 routes.use("/department", DepartmentRoutes);
+routes.use("/lessontype", LessonTypeRoutes);
 
 export default routes;
