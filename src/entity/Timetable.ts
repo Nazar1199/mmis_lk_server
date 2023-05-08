@@ -3,6 +3,7 @@ import { Teacher } from "./Teacher";
 import { Discipline } from "./Discipline";
 import { Group } from "./Group";
 import { Auditorium } from "./Auditorium";
+import { LessonType } from "./LessonType";
 
 @Entity()
 export class Timetable {
@@ -20,6 +21,9 @@ export class Timetable {
 
     @ManyToOne(() => Auditorium, (auditorium) => auditorium.timetable)
     auditorium: Auditorium;
+
+    @ManyToOne(() => LessonType, (lessonType) => lessonType.timetable)
+    lessonType: LessonType;
 
     @ManyToOne(() => Group, (group) => group.timetable)
     group: Group;
