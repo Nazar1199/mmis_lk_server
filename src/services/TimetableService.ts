@@ -9,7 +9,9 @@ class TimetableService {
     }
 
     getAllTimetables = async () => {
-        let allTimetables = await getRepository(Timetable).find(); 
+        let allTimetables = await getRepository(Timetable).find({
+            relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType']
+        }); 
         console.log("Timetables: " + JSON.stringify(allTimetables));
         return allTimetables;
     }
@@ -17,7 +19,7 @@ class TimetableService {
     getTimetableById = async(id: number) => {
         if(!id) return;
         let timetable = await getRepository(Timetable).findOne({
-            relations: ['group', 'teacher', 'discipline'],
+            relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
             where: {id: id}
         });
         return timetable;
@@ -26,7 +28,7 @@ class TimetableService {
     getAllTimetablesForDiscipline = async(idDiscipline: number) => {
         if(!idDiscipline) return;
         let timetable = await getRepository(Timetable).find({
-            relations: ['group', 'teacher', 'discipline'],
+            relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
             where: {discipline: {id: idDiscipline}}
         });
         return timetable;
@@ -35,7 +37,7 @@ class TimetableService {
     getAllTimetablesForGroup = async(idGroup: number) => {
         if(!idGroup) return;
         let timetable = await getRepository(Timetable).find({
-            relations: ['group', 'teacher', 'discipline'],
+            relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
             where: {group: {id: idGroup}}
         });
         return timetable;
@@ -44,7 +46,7 @@ class TimetableService {
     getAllTimetablesForTeacher = async(idTeacher: number) => {
         if(!idTeacher) return;
         let timetable = await getRepository(Timetable).find({
-            relations: ['group', 'teacher', 'discipline'],
+            relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
             where: {teacher: {id: idTeacher}}
         });
         return timetable;
@@ -53,7 +55,7 @@ class TimetableService {
     getAllTimetablesForAuditorium = async(numAuditorium: number) => {
         if(!numAuditorium) return;
         let timetable = await getRepository(Timetable).find({
-            relations: ['group', 'teacher', 'discipline'],
+            relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
             where: {auditorium: numAuditorium}
         });
         return timetable;
