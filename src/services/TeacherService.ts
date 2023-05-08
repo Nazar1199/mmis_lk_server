@@ -10,7 +10,7 @@ class TeacherService {
 
     getAllTeachers = async () => {
         let allTeachers = await getRepository(Teacher).find({
-            relations: ['position']
+            relations: ['position', 'department']
         }); 
         console.log("Teachers: " + JSON.stringify(allTeachers));
         return allTeachers;
