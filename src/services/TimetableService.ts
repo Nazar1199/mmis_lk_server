@@ -29,7 +29,8 @@ class TimetableService {
         if(!idDiscipline) return;
         let timetable = await getRepository(Timetable).find({
             relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
-            where: {discipline: {id: idDiscipline}}
+            where: {discipline: {id: idDiscipline}},
+            order: {date: 'ASC'}
         });
         return timetable;
     }
@@ -38,7 +39,8 @@ class TimetableService {
         if(!idGroup) return;
         let timetable = await getRepository(Timetable).find({
             relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
-            where: {group: {id: idGroup}}
+            where: {group: {id: idGroup}},
+            order: {date: 'ASC'}
         });
         return timetable;
     }
@@ -47,7 +49,8 @@ class TimetableService {
         if(!idTeacher) return;
         let timetable = await getRepository(Timetable).find({
             relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
-            where: {teacher: {id: idTeacher}}
+            where: {teacher: {id: idTeacher}},
+            order: {date: 'ASC'}
         });
         return timetable;
     }
@@ -56,7 +59,8 @@ class TimetableService {
         if(!numAuditorium) return;
         let timetable = await getRepository(Timetable).find({
             relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
-            where: {auditorium: numAuditorium}
+            where: {auditorium: numAuditorium},
+            order: {date: 'ASC'}
         });
         return timetable;
     }
