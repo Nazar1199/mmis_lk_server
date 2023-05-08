@@ -19,7 +19,7 @@ export class Student {
     patronymic: string;
 
     @Column({ nullable: false})
-    reportCard: number;
+    reportCard: string;
 
     @ManyToOne(() => Group, (group) => group.student)
     group: Group;
@@ -28,7 +28,7 @@ export class Student {
     phone: string;
 
     @Column({ nullable: false})
-    birthdate: Date;
+    birthdate: string;
 
     @Column({ nullable: true})
     photo: string;
