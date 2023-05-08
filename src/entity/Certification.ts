@@ -2,6 +2,7 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
 import { Teacher } from "./Teacher";
 import { Discipline } from "./Discipline";
 import { Student } from "./Student";
+import { TypeControl } from "./TypeControl";
 
 @Entity()
 export class Certification {
@@ -16,6 +17,9 @@ export class Certification {
 
     @ManyToOne(() => Teacher, (teacher) => teacher.certification)
     teacher: Teacher;
+
+    @ManyToOne(() => TypeControl, (typeControl) => typeControl.certification)
+    typeControl: TypeControl;
 
     @Column({ nullable: false})
     dateTime: Date;
