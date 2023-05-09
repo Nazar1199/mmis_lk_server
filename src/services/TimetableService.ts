@@ -10,7 +10,8 @@ class TimetableService {
 
     getAllTimetables = async () => {
         let allTimetables = await getRepository(Timetable).find({
-            relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType']
+            relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
+            order: {date: 'ASC'}
         }); 
         console.log("Timetables: " + JSON.stringify(allTimetables));
         return allTimetables;
@@ -20,7 +21,8 @@ class TimetableService {
         if(!id) return;
         let timetable = await getRepository(Timetable).findOne({
             relations: ['group', 'teacher', 'discipline', 'auditorium', 'lessonTime', 'lessonType'],
-            where: {id: id}
+            where: {id: id},
+            order: {date: 'ASC'}
         });
         return timetable;
     }
