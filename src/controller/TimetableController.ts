@@ -23,10 +23,10 @@ export class TimetableController {
     }
 
     static getTimetableById = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.id) {
-            throw new Error("Не удалось получить информацию о расписании");
-        }
         try {
+            if (!request.params.id) {
+                throw new Error("Не удалось получить информацию о расписании");
+            }
             console.log("Id timetable: " + request.params.id);
             let result = await TimetableService.getTimetableById(request.params.id);
             response.status(200).send(result);
@@ -36,10 +36,10 @@ export class TimetableController {
     }
 
     static getAllTimetablesForGroup = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.group) {
-            throw new Error("Не удалось получить информацию о расписании для группы: ");
-        }
         try {
+            if (!request.params.group) {
+                throw new Error("Не удалось получить информацию о расписании для группы: ");
+            }
             console.log("Id group: " + request.params.group);
             let result = await TimetableService.getAllTimetablesForGroup(request.params.group);
             response.status(200).send(result);
@@ -49,10 +49,10 @@ export class TimetableController {
     }
 
     static getAllTimetablesForAuditorium = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.auditorium) {
-            throw new Error("Не удалось получить информацию о расписании для аудитории");
-        }
         try {
+            if (!request.params.auditorium) {
+                throw new Error("Не удалось получить информацию о расписании для аудитории");
+            }
             console.log("Id auditorium: " + request.params.auditorium);
             let result = await TimetableService.getAllTimetablesForAuditorium(request.params.auditorium);
             response.status(200).send(result);
@@ -62,10 +62,10 @@ export class TimetableController {
     }
 
     static getAllTimetablesForDiscipline = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.discipline) {
-            throw new Error("Не удалось получить информацию о расписании для дисциплины");
-        }
         try {
+            if (!request.params.discipline) {
+                throw new Error("Не удалось получить информацию о расписании для дисциплины");
+            }
             console.log("Id discipline: " + request.params.discipline);
             let result = await TimetableService.getAllTimetablesForDiscipline(request.params.discipline);
             response.status(200).send(result);
@@ -75,10 +75,10 @@ export class TimetableController {
     }
 
     static getAllTimetablesForTeacher = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.teacher) {
-            throw new Error("Не удалось получить информацию о расписании для преподавателя");
-        }
         try {
+            if (!request.params.teacher) {
+                throw new Error("Не удалось получить информацию о расписании для преподавателя");
+            }
             console.log("Id teacher: " + request.params.teacher);
             let result = await TimetableService.getAllTimetablesForTeacher(request.params.teacher);
             response.status(200).send(result);
@@ -97,10 +97,10 @@ export class TimetableController {
     }
 
     static deleteTimetable = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.id) {
-            throw new Error("Не удалось найти расписание, которого требуется удалить");
-        }
         try {
+            if (!request.params.id) {
+                throw new Error("Не удалось найти расписание, которого требуется удалить");
+            }
             await TimetableService.deleteTimetable(request.params.id);
             response.status(200).send();
         } catch (error) {
