@@ -1,7 +1,6 @@
 import {NextFunction, Request, Response} from "express";
 import OrderingReferenceService from "../services/OrderingReferenceService";
 import StatusService from "../services/StatusService";
-import { ProfileController } from "./ProfileController";
 import ProfileService from "../services/ProfileService";
 
 export class OrderingReferenceController {
@@ -60,7 +59,7 @@ export class OrderingReferenceController {
             if (!request.headers.id) {
                 throw new Error("Не удалось получить информацию о заказанных справках");
             }
-            request.headers.id = await ProfileService.getMyStudentId(request.headers.id)
+            request.headers.id = await ProfileService.getMyStudentId(request.headers.id);
             console.log("Id student: " + request.headers.id);
             let result = await OrderingReferenceService.getAllOrderingReferencesForStudent(request.headers.id);
             response.status(200).send(result);
