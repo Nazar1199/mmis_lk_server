@@ -10,7 +10,8 @@ class CertificationService {
 
     getAllCertifications = async () => {
         let allCertifications = await getRepository(Certification).find({
-            relations: ['student', 'discipline', 'teacher', 'typeControl']
+            relations: ['student', 'discipline', 'teacher', 'typeControl'],
+            order: {periodSem: 'ASC'}
         }); 
         console.log("Certifications: " + JSON.stringify(allCertifications));
         return allCertifications;
@@ -29,7 +30,8 @@ class CertificationService {
         if(!idStudent) return;
         let certification = await getRepository(Certification).find({
             relations: ['discipline', 'teacher', 'typeControl'],
-            where: {student: idStudent}
+            where: {student: idStudent},
+            order: {periodSem: 'ASC'}
         });
         return certification;
     }
@@ -38,7 +40,8 @@ class CertificationService {
         if(!idGroup) return;
         let certification = await getRepository(Certification).find({
             relations: ['student', 'discipline', 'teacher', 'typeControl'],
-            where: {student: {group: idGroup}}
+            where: {student: {group: idGroup}},
+            order: {periodSem: 'ASC'}
         });
         return certification;
     }
