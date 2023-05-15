@@ -24,10 +24,10 @@ export class CertificationController {
     }
 
     static getCertificationById = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.id) {
-            throw new Error("Не удалось получить информацию о оценке");
-        }
         try {
+            if (!request.params.id) {
+                throw new Error("Не удалось получить информацию о оценке");
+            }
             let certification = await CertificationService.getCertificationById(request.params.id);
             response.status(200).send(certification);
         } catch(error) {
@@ -36,10 +36,10 @@ export class CertificationController {
     }
 
     static getAllCertificationsForStudent = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.student) {
-            throw new Error("Не удалось получить информацию о оценках студента");
-        }
         try {
+            if (!request.params.student) {
+                throw new Error("Не удалось получить информацию о оценках студента");
+            }
             let certifications = await CertificationService.getAllCertificationsForStudent(request.params.student);
             response.status(200).send(certifications);
         } catch(error) {
@@ -48,10 +48,10 @@ export class CertificationController {
     }
 
     static getAllCertificationsForMe = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.headers.id) {
-            throw new Error("Не удалось получить информацию о оценках студента");
-        }
         try {
+            if (!request.headers.id) {
+                throw new Error("Не удалось получить информацию о оценках студента");
+            }
             console.log("Id profile: " + request.headers.id);
             request.headers.id = await ProfileService.getMyStudentId(request.headers.id);
             console.log("Id student: " + request.headers.id);
@@ -63,10 +63,10 @@ export class CertificationController {
     }
 
     static getAllCertificationsForGroup = async(request: Request, response: Response, next: NextFunction) => {
-        if (!request.params.group) {
-            throw new Error("Не удалось получить информацию о оценках группы");
-        }
         try {
+            if (!request.params.group) {
+                throw new Error("Не удалось получить информацию о оценках группы");
+            }
             let certifications = await CertificationService.getAllCertificationsForGroup(request.params.group);
             response.status(200).send(certifications);
         } catch(error) {
