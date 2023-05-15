@@ -28,5 +28,8 @@ export class Certification {
     mark: number;
 
     @Column({ nullable: false})
+    periodSem: number;
+
+    @Column({ nullable: false})
     numberOfHours: number;
 }
