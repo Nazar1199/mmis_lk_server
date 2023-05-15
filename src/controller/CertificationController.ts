@@ -1,5 +1,6 @@
 import {NextFunction, Request, Response} from "express";
 import CertificationService from "../services/CertificationService";
+import ProfileService from "../services/ProfileService";
 
 export class CertificationController {
     static createCertification = async(request: Request, response: Response, next: NextFunction) => {
@@ -40,6 +41,21 @@ export class CertificationController {
         }
         try {
             let certifications = await CertificationService.getAllCertificationsForStudent(request.params.student);
+            response.status(200).send(certifications);
+        } catch(error) {
+            response.status(500).send("Не удалось получить информацию о оценках студента: " + error);
+        }
+    }
+
+    static getAllCertificationsForMe = async(request: Request, response: Response, next: NextFunction) => {
+        if (!request.headers.id) {
+            throw new Error("Не удалось получить информацию о оценках студента");
+        }
+        try {
+            console.log("Id profile: " + request.headers.id);
+            request.headers.id = await ProfileService.getMyStudentId(request.headers.id);
+            console.log("Id student: " + request.headers.id);
+            let certifications = await CertificationService.getAllCertificationsForStudent(request.headers.id);
             response.status(200).send(certifications);
         } catch(error) {
             response.status(500).send("Не удалось получить информацию о оценках студента: " + error);

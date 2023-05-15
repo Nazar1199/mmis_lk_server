@@ -5,6 +5,7 @@ const CertificationRoutes = Router();
 import checkJwtAdmin from "../middleware/jwtAdmin";
 import checkJwtAuth from "../middleware/jwt";
 
+CertificationRoutes.get("/me", checkJwtAuth, CertificationController.getAllCertificationsForMe);
 CertificationRoutes.get("/", checkJwtAdmin, CertificationController.getAllCertifications);
 CertificationRoutes.get("/:id", checkJwtAdmin, CertificationController.getCertificationById);
 CertificationRoutes.get("/group/:id", checkJwtAdmin, CertificationController.getAllCertificationsForGroup);
