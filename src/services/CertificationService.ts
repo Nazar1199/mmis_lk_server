@@ -11,7 +11,7 @@ class CertificationService {
     getAllCertifications = async () => {
         let allCertifications = await getRepository(Certification).find({
             relations: ['student', 'discipline', 'teacher', 'typeControl'],
-            order: {periodSem: 'ASC'}
+            order: {periodSem: 'DESC'}
         }); 
         console.log("Certifications: " + JSON.stringify(allCertifications));
         return allCertifications;
@@ -31,7 +31,7 @@ class CertificationService {
         let certification = await getRepository(Certification).find({
             relations: ['discipline', 'teacher', 'typeControl'],
             where: {student: idStudent},
-            order: {periodSem: 'ASC'}
+            order: {periodSem: 'DESC'}
         });
         return certification;
     }
@@ -41,7 +41,7 @@ class CertificationService {
         let certification = await getRepository(Certification).find({
             relations: ['student', 'discipline', 'teacher', 'typeControl'],
             where: {student: {group: idGroup}},
-            order: {periodSem: 'ASC'}
+            order: {periodSem: 'DESC'}
         });
         return certification;
     }
