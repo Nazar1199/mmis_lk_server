@@ -1,8 +1,8 @@
 {
    "type": "postgres",
-   "host": "localhost",
+   "host": "dpg-ci0lkv02qv21rs4vsgt0-a",
    "port": 5432,
-   "username": "postgres",
+   "username": "mmis_client",
    "password": "5512",
    "database": "mmis_lk_db",
    "synchronize": true,
